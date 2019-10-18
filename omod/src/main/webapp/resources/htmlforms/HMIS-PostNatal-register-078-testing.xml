@@ -1,0 +1,63 @@
+<htmlform formName="HMIS MCH 078:PostNatal Register testing"
+          formDescription="To record the postnatal clients attending the clinic"
+          formEncounterType="264daIZd-f80e-48fe-nba9-P37f2W1905Pv"
+          formUuid="e9b1da38-0691-4745-a13b-f1b970bcec01"
+          formVersion="1.3"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="13"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="HMIS MCH 078:PostNatal Register testing">
+    <!-- Beging of HTML Form -->
+
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#mother-info">Mother's Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#infant-info">Infant Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="mother-info" >
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>PNC</label>
+                                <input type="text"/>
+                            </div>
+
+                            <div class="col-md-4">fff</div><div class="col-md-4">fff</div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="infant-info" >
+                        <h5 class="card-title">Infant</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- End of HTML Form -->
+</htmlform>
