@@ -11,42 +11,394 @@
           formDisplayStyle="Standard"
           formLabel="HMIS MCH 078:PostNatal Register testing">
     <!-- Beging of HTML Form -->
+    <style type="text/css">
+<!--        .EnableDisabletbstatuschild {-->
+<!--        display: none;-->
+<!--        }-->
+
+<!--        .stability {-->
+<!--        display: none;-->
+<!--        }-->
+
+<!--        form label, .form label {-->
+<!--        padding 0;-->
+<!--        float:none;-->
+<!--        }-->
+<!--        .mt-0 {-->
+<!--        margin-top: 0 !important;-->
+<!--        }-->
+<!--        .divider-10 {-->
+<!--        width:100%;-->
+<!--        min-height:1px;-->
+<!--        margin-top:10px;-->
+<!--        margin-bottom:10px;-->
+<!--        display:inline-block;-->
+<!--        position:relative;-->
+<!--        }-->
+<!--&lt;!&ndash;        form input[type="checkbox"], form input[type="radio"], .form input[type="checkbox"], .form input[type="radio"] {&ndash;&gt;-->
+<!--&lt;!&ndash;        margin: 0px 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;        } &ndash;&gt;-->
+
+
+<!--        form select, form textarea, form ul.select, .form input, .form select, .form textarea, .form-->
+<!--        ul.select {-->
+<!--        background-color: #FBFBFB;-->
+<!--        border: 1px solid #CEC9C9;-->
+<!--        border-radius: 0;-->
+<!--        margin-bottom: 0;-->
+<!--        padding-top: 1px;-->
+<!--        min-width: 100%;-->
+<!--        }-->
+        .nowrap {
+<!--        overflow:hidden;-->
+        white-space:nowrap;
+        }
+<!--        .requiredInput:before { content:"*"; color:red; white-space: nowrap;}-->
+<!--        input.align {-->
+<!--        text-align: right;-->
+<!--&lt;!&ndash;        float: right;&ndash;&gt;-->
+<!--&lt;!&ndash;        clear: both;&ndash;&gt;-->
+<!--        }-->
+    </style>
+    <script type="text/javascript">
+        beforeSubmit.push(function() {
+        var error = false;
+        <!-- Clear the previous errors -->
+        setValue('required.error', '');
+        <!-- For Return Visit Date -->
+        if ( (getValue('required.value') == '') ) {
+        getField('required.error').html('Required').show();
+        error=true;
+        }
+        if (error == true) {
+        return false;
+        }
+        return true;
+        });
+
+        jq(document).change(function () {
+
+<!--        jq("#5281").find("input[type$='text']").attr('disabled',true);-->
+<!--        jq("#5281").find("input[type$='text']").attr("disabled",true);-->
+
+        if(jq('#other-fp').find(':checkbox').prop('checked')){
+
+<!--        jq("#5281").prop('disabled', true);-->
+        jq("#other-specify").find("input[type$='text']").attr("disabled",false);
+<!--        jq("#5281").find("input[type$='text']").val("");-->
+        }
+        else{
+        jq("#other-specify").find("input[type$='text']").attr("disabled",true); }
+
+<!--        jq("#required").find(':dropdown').attr('required',true);-->
+        });
+
+
+<!--        // https://stackoverflow.com/questions/53528805/jquery-disable-enable-multiple-checkbox-if-another-checkbox-is-checked-->
+
+<!--        jq('#other-fp').change(function () {-->
+
+<!--&lt;!&ndash;        jq("#5281").find("input[type$='text']").attr("disabled",true);&ndash;&gt;-->
+
+<!--&lt;!&ndash;        if(!jq('#other-fp').find(':checkbox').prop('checked')){&ndash;&gt;-->
+<!--&lt;!&ndash;        jq("#5281").find("input[type$='text']").attr("disabled",true);&ndash;&gt;-->
+<!--&lt;!&ndash;        jq("#5281").find("input[type$='text']").val("");&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        else{&ndash;&gt;-->
+<!--&lt;!&ndash;        jq("#5281").find("input[type$='text']").attr("disabled",false); }&ndash;&gt;-->
+
+<!--        });-->
+
+<!--        });-->
+    </script>
+<!--    <div class="container">-->
+    <div class="row">
+        <div class="col-md-8"><h1>HMIS MCH 078:PostNatal Register testing</h1></div>
+        <div class="col-md-2 offset-md-2"><submit/></div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
 
         <div class="card">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#mother-info">Mother's Information</a>
+                        <a class="nav-link active" data-toggle="tab" href="#mother-info">Mother Information</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#infant-info">Infant Information</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
                 </ul>
             </div>
+
             <div class="card-body">
                 <div class="tab-content">
                     <div class="tab-pane active" id="mother-info" >
                         <div class="row">
                             <div class="col-md-4">
-                                <label>PNC</label>
-                                <input type="text"/>
+                                <label>Timing for PNC Visit</label>
+                                <span id="checkboxRadio">
+                                    <obs conceptId="1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" id="1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerConceptIds="1822AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1073AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,1074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabels="6 Hours, 6 Days, 6 Weeks, 6 Months"/>
+
+                                </span>
                             </div>
 
-                            <div class="col-md-4">fff</div><div class="col-md-4">fff</div>
+                        </div>
+<!--                        <div class="divider-10"></div>-->
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Family Planning Method Given</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-check row">
+                                    <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="38aa1dc0-1aaa-4bdd-b26f-28f960dfb16c"
+                                         answerLabel="Oral:Lo-Femenal"
+                                         style="checkbox" />
+                                </div>
+                                <div class="form-check row">
+                                    <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="4b0899f2-395e-4e0f-8b58-d304b214615e"
+                                         answerLabel="Oral: Microgynon"
+                                         style="checkbox" />
+                                </div>
+                                <div class="form-check row">
+                                    <div class="nowrap">
+                                    <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="dcdd91a7-30ab-102d-86b0-7a5022ba4115"
+                                         answerLabel="Oral: Ovrette or another POP"
+                                         style="checkbox" />
+                                    </div>
+                                </div>
+                                <div class="form-check row">
+                                    <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="670b7048-d71e-483a-b2ec-f10d2326dd84"
+                                         answerLabel="Oral:Others"
+                                         style="checkbox" />
+                                </div>
+                                <div class="form-check row">
+                                    <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="dc882c84-30ab-102d-86b0-7a5022ba4115"
+                                         answerLabel="Female Condoms"
+                                         style="checkbox" />
+                                </div>
+                                </div>
+                            <div class="col-md-4">
+
+                                <div class="form-check row">
+                                <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                     answerConceptId="aeee4ccf-cbf8-473c-9d9f-846643afbf11"
+                                     answerLabel="Male Condoms"
+                                     style="checkbox" />
+                                </div>
+                                <div class="form-check row">
+                                    <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="dcb2f595-30ab-102d-86b0-7a5022ba4115"
+                                         answerLabel="IUDs"
+                                         style="checkbox" />
+                                </div>
+                                <div class="form-check row">
+                                    <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="dcb30ba3-30ab-102d-86b0-7a5022ba4115"
+                                         answerLabel="Injectable"
+                                         style="checkbox" />
+                                </div>
+
+                                <div class="form-check row">
+                                    <obs  conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                          answerConceptId="dcb30381-30ab-102d-86b0-7a5022ba4115"
+                                          answerLabel="Natural"
+                                          style="checkbox" />
+                                </div>
+                                <div class="form-check row">
+                                    <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="dcb2fba9-30ab-102d-86b0-7a5022ba4115"
+                                         answerLabel="Female Sterilization"
+                                         style="checkbox" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+
+
+
+                                <div class="form-check row">
+                                <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                     answerConceptId="dcdd8d8d-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabel="Male Sterilization"
+                                     style="checkbox" />
+                            </div>
+
+                                <div class="form-check row">
+                                <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                     answerConceptId="bb83fd9d-24c5-4d49-89c0-97e13c792aaf"
+                                     answerLabel="Implant"
+                                     style="checkbox" />
+                            </div>
+
+<!--                                <div class="form-check row">-->
+<!--                                <obs conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"-->
+<!--                                     answerConceptId="dcdd91a7-30ab-102d-86b0-7a5022ba4115"-->
+<!--                                     answerLabel="Tubal Ligation"-->
+<!--                                     style="checkbox" />-->
+<!--                            </div>-->
+                                <div class="form-check row">
+                                    <div class="nowrap">
+                                    <obs id="no-fp-method" conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                         answerConceptId="
+	                                 aaf150a5-92d2-416f-8254-95d34ed9c4ab"
+                                         answerLabel="No FP Method Given"
+                                         style="checkbox"  />
+                                    </div>
+                                </div>
+                                <div class="form-check row" >
+                                    <div class="nowrap">
+                                    <obs  id="other-fp" conceptId="dc7620b3-30ab-102d-86b0-7a5022ba4115"
+                                          answerConceptId="5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                                         answerLabel="Other (Specify)"
+                                         style="checkbox" />
+                                    </div>
+                                        <obs id="other-specify" conceptId="165184" />
+
+                                </div>
+
+
+
                         </div>
                     </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Status of the Breast</label>
+                                    <obs conceptId="07c10f5c-17fd-4a7e-8d72-c2252f589da0"
+                                         answerConceptIds="e4c6b70d-aaa6-490b-8edc-01c44d982cb2,5e416f86-aaf1-4ae4-96f0-30226b9fdd5f,dc9825cf-30ab-102d-86b0-7a5022ba4115"
+                                         answerLabels="FOM - No swellings pain or discharge,SS - Have discharge blood or pus,ND - Not Done"
+                                         style="dropdown" />
+                            </div>
+                            <div class="col-md-6 offset-md-2">
+                                <label>Status of the Cervix<span class="required">*</span></label>
 
+
+                                    <obs id="required" conceptId="d858f8cb-fe9e-4131-8d91-cd9929cc53de"
+                                     answerConceptIds="14556e6e-9ee4-439c-98ac-079e12fc98fa,ec3a0208-0261-450a-a13b-b524e160b8fd,dc9825cf-30ab-102d-86b0-7a5022ba4115"
+                                     answerLabels="FOM - Cervix is free of malignancy,SS- Cervix is suspicious of malignancy,ND - Not Done" style="dropdown"  />
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"><label>Weight</label><obs conceptId="94e4aeea-84d0-4207-aacb-ce38fe8e109c" /></div>
+                            <div class="col-md-2"><label>MUAC (cm)</label><obs conceptId="1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"  /></div>
+                            <div class="col-md-3 offset-md-0"><label>INR No.</label><obs conceptId="b644c29c-9bb0-447e-9f73-2ae89496a709"  /></div>
+                            <div class="col-md-5"><label>MUAC Code</label>
+                                <includeIf velocityTest="$patient.age &lt; 5">
+                                <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                     answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+                                     answerLabels="Red &lt; 11.5cm, Yellow 11.5cm - &lt;12.5cm,Green &gt;= 12.5cm" style="dropdown"/>
+                            </includeIf>
+                                <includeIf velocityTest="$patient.age &lt; 10 &amp;&amp; $patient.age &gt;=5">
+                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+                                         answerLabels="Red &lt; 13.5cm,Yellow 13.5cm - &lt;14.5cm,Green &gt;=14.5cm" style="dropdown"/>
+                                </includeIf>
+                                <includeIf velocityTest="$patient.age &lt; 18 &amp;&amp; $patient.age &gt;=10">
+                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+                                         answerLabels="Red &lt; 16.5cm, Yellow 16.5cm - &lt;19.0cm,Green &gt;=19.0cm" style="dropdown" />
+                                </includeIf>
+                                <includeIf velocityTest="$patient.age &gt;=18">
+                                    <obs id="br" conceptId="5f86d19d-9546-4466-89c0-6f80c101191b"
+                                         answerConceptIds="8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3,de330d01-5586-4eed-a645-e04b6bd13701,a3b1734c-4743-4b9d-8e71-08d0459d29b9"
+
+                                         answerLabels="Red &lt;19.0cm , Yellow 19.0cm - &lt;22.0cm,Green &gt;=22.0cm" style="dropdown" />
+                                </includeIf></div>
+                        </div>
+                        <div class="row"><div class="col-md-12"><div class="card" style="width: 58rem;"><div class="card-header">eMTCT</div>
+                        <div class="card-body">
+                            <div class="row"><div class="col-md-2"><label>Woman Code</label>
+
+                                <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74"
+                                                                                                 answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+					              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+					              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+					              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+					              	a08d9331-b437-485c-8eff-1923f3d43630,
+					              	60155e4d-1d49-4e97-9689-758315967e0f,
+					              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
+					              	4d301db0-c517-4556-9f7c-d837bac90144"
+                                                                                                 answerLabels="C - Counselled but declined HIV testing,
+	              					T - Counselled and tested but didn't receive results,
+	              					TR - Counselled tested and results given - Client tested HIV- in PNC,
+	              					TRR - Counselled tested and results given - Client tested HIV+ in PNC,
+	              					TR+ - Client tested HIV- on a re-test,
+	              					TRR+ - Client tested HIV+ on a re-test,
+	              					TR&#8730; - Clients who were tested for HIV on a previous visit with known HIV Negative status,
+	              					TRR&#8730; - Revisit ANC clients who were tested for HIV on a previous visit with known HIV positive status"
+                                                                                                 style="dropdown"   />
+                                </div>
+
+
+
+                            </div>
+                            <div class="row"><div class="col-md-4"><label>Woman TFV</label><obs conceptId="94e4aeea-84d0-4207-aacb-ce38fe8e109c" /></div>
+                            <div class="col-md-4"><label>Given STK</label><obs  conceptId="90270" answerConceptIds="90003,90004"
+                                                                               answerLabels="Yes,No" style="radio" class="horizontal"/></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"><label>Partner Code</label><obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74"
+                                                                                      answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
+					              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
+					              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
+					              	25c448ff-5fe4-4a3a-8c0a-b5aaea9d5465,
+					              	a08d9331-b437-485c-8eff-1923f3d43630,
+					              	60155e4d-1d49-4e97-9689-758315967e0f,
+					              	48723c9c-c931-4fde-81cd-6178c9a9a70b,
+					              	4d301db0-c517-4556-9f7c-d837bac90144,
+					              	8eab745c-24a5-4ba4-906c-b5087e920b66"
+                                                                                      answerLabels="C - Counselled but declined HIV testing,
+	              					T - Counselled and tested but didn't receive results,
+	              					TR - Counselled tested and results given - Client tested HIV- in PNC,
+	              					TRR - Counselled tested and results given - Client tested HIV+ in PNC,
+	              					TR+ - Client tested HIV- on a re-test,
+	              					TRR+ - Client tested HIV+ on a re-test,
+	              					TR&#8730; - Clients who were tested for HIV on a previous visit with known HIV Negative status,
+	              					TRR&#8730; - Revisit ANC clients who were tested for HIV on a previous visit with known HIV positive status,
+	              					Not Tested"
+                                                                                      style="dropdown"  /></div>
+
+
+                            </div>
+                            <div class="row"><div class="col-md-4"><label>Partner TFV</label><obs conceptId="94e4aeea-84d0-4207-aacb-ce38fe8e109c" /></div>
+                            <div class="col-md-4"><label>STK Result</label><obs conceptId="90253" answerConceptIds="90166,90167"
+                                                                                answerLabels="Positive,Negative"/></div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+                        </div></div></div>
+
+                    </div>
                     <div class="tab-pane" id="infant-info" >
                         <h5 class="card-title">Infant</h5>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
-                </div>
+
             </div>
         </div>
+        </div>
+    </div>
+</div>
+<!--    </div>-->
+
 
 
 
