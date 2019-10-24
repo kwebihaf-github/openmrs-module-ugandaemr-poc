@@ -53,6 +53,25 @@
 <!--        overflow:hidden;-->
         white-space:nowrap;
         }
+
+        select[name="w74"] {
+        max-width: 200px;
+        }
+        select[name="w82"] {
+        max-width: 200px;
+        }
+        select[name="w90"] {
+        max-width: 200px;
+        }
+        select[name="w98"] {
+        max-width: 200px;
+        }
+        select[name="w106"] {
+        max-width: 200px;
+        }
+<!--        select[id*="ts"] {-->
+<!--        max-width: 200px;-->
+<!--        }-->
 <!--        .requiredInput:before { content:"*"; color:red; white-space: nowrap;}-->
 <!--        input.align {-->
 <!--        text-align: right;-->
@@ -64,10 +83,16 @@
         beforeSubmit.push(function() {
         var error = false;
         <!-- Clear the previous errors -->
-        setValue('required.error', '');
-        <!-- For Return Visit Date -->
-        if ( (getValue('required.value') == '') ) {
-        getField('required.error').html('Required').show();
+        setValue('cervixStatusRequired.error', '');
+        setValue('womanCodeRequired.error', '');
+        <!-- Status of the Cervix -->
+        if ( (getValue('cervixStatusRequired.value') == '') ) {
+        getField('cervixStatusRequired.error').html('Required').show();
+        error=true;
+        }
+        <!-- Woman Code -->
+        if ( (getValue('womanCodeRequired.value') == '') ) {
+        getField('womanCodeRequired.error').html('Required').show();
         error=true;
         }
         if (error == true) {
@@ -110,6 +135,63 @@
 <!--        });-->
 
 <!--        });-->
+    </script>
+    <script type="text/javascript">
+        if(jQuery){
+        jq(document).ready(function(){
+        $allRows = jq(this).find('.routine-admin');
+        $allRows.hide();
+        jq('#1-removeEntry').remove();
+        jq('#10-addEntry').remove();
+        jq('#1-toggleContainer').show();
+
+        jq('#11-removeEntry').remove();
+        jq('#20-addEntry').remove();
+        jq('#11-toggleContainer').show();
+        });
+
+        jq(document).ready(function(){
+        jq('.addEntry').on("click", function(){
+        var correctedAddButtonId = parseFloat(this.id) + 1;
+        var contentAddId = "#" + correctedAddButtonId + "-toggleContainer";
+        jq(contentAddId).toggle(true);
+        jq('#' + this.id).toggle(false); jq('#' + parseFloat(this.id) + '-removeEntry').toggle(true);
+        return false;});
+        });
+
+        jq(document).ready(function(){
+        jq('.removeEntry').on("click", function(){
+        var correctedRemoveButtonId = parseFloat(this.id) - 1;
+        var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer";
+        jq(contentAddId).toggle(false);
+        jq( ':input:not(:button)', contentAddId).val([]);
+        jq('#' + correctedRemoveButtonId + '-addEntry').toggle(true); jq('#' + correctedRemoveButtonId + '-removeEntry').toggle(true);
+
+        return false;});
+
+        });
+        }
+    </script>
+    <script type="text/javascript">
+
+        // Shorten select option text if it stretches beyond max-width of select element
+        $.each($('.shortenedSelect option'), function(key, optionElement) {
+        var curText = $(optionElement).text();
+        $(this).attr('title', curText);
+
+        // Tip: parseInt('350px', 10) removes the 'px' by forcing parseInt to use a base ten numbering system.
+        var lengthToShortenTo = Math.round(parseInt($(this).parent('select').css('max-width'), 10) / 7.3);
+
+        if (curText.length > lengthToShortenTo) {
+        $(this).text('... ' + curText.substring((curText.length - lengthToShortenTo), curText.length));
+        }
+        });
+
+        // Show full name in tooltip after choosing an option
+        $('.shortenedSelect').change(function() {
+        $(this).attr('title', ($(this).find('option:eq('+$(this).get(0).selectedIndex +')').attr('title')));
+        });
+
     </script>
 <!--    <div class="container">-->
     <div class="row">
@@ -282,7 +364,7 @@
                                 <label>Status of the Cervix<span class="required">*</span></label>
 
 
-                                    <obs id="required" conceptId="d858f8cb-fe9e-4131-8d91-cd9929cc53de"
+                                    <obs id="cervixStatusRequired" conceptId="d858f8cb-fe9e-4131-8d91-cd9929cc53de"
                                      answerConceptIds="14556e6e-9ee4-439c-98ac-079e12fc98fa,ec3a0208-0261-450a-a13b-b524e160b8fd,dc9825cf-30ab-102d-86b0-7a5022ba4115"
                                      answerLabels="FOM - Cervix is free of malignancy,SS- Cervix is suspicious of malignancy,ND - Not Done" style="dropdown"  />
 
@@ -318,9 +400,12 @@
                         </div>
                         <div class="row"><div class="col-md-12"><div class="card" style="width: 58rem;"><div class="card-header">eMTCT</div>
                         <div class="card-body">
-                            <div class="row"><div class="col-md-2"><label>Woman Code</label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Woman Code<span class="required">*</span></label>
 
-                                <obs conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74"
+
+                                <obs id="womanCodeRequired" conceptId="d5b0394c-424f-41db-bc2f-37180dcdbe74"
                                                                                                  answerConceptIds="6da9b915-8668-4642-8ed4-7d2a346881cb,
 					              	05f16fc5-1d82-4ce8-9b44-a3125fbbf2d7,
 					              	86e394fd-8d85-4cb3-86d7-d4b9bfc3e43a,
@@ -380,10 +465,77 @@
 
 
 
+
                         </div>
 
 
+                        </div></div></div><!-- -->
+                        <div class="row"><div class="col-md-12"><div class="card mt-4" style="width: 58rem;"><div class="card-header">ART</div>
+                        <div class="card-body">
+                            <div class="row"><div class="col-md-2"><div class="nowrap"><label>Woman ART Code</label></div><obs id="" conceptId="99744"
+                                                                                                     answerConceptIds="99745,99746,99747,99748,1175"
+                                                                                                     answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,NA" /></div>
+
+                                <div class="col-md-4 offset-md-2"><label>Woman Pre-ART No</label><span id="pre-art-number"><patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" required="false" /></span></div>
+
+                            </div>
+                            <div class="row"><div class="col-md-2"><div class="nowrap"><label>Partner ART Code</label></div><obs id="" conceptId="99744"
+                                                                                                                                 answerConceptIds="99745,99746,99747,99748,1175"
+                                                                                                                                 answerLabels="ART,ARTK,ART&#8730;,ARTK&#8730;,NA" /></div>
+                            <div class="col-md-4 offset-md-2"><label>Partner Pre-ART No</label><span id="pre-art-number"><patient field="identifier" identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115" required="false" /></span></div>
+                            </div>
+<!--                            <div class="row"><div class="col-md-2"></div></div>-->
+
+
+
+                        </div>
+
+
+
+
                         </div></div></div>
+                        <div class="row"><div class="col-md-12"><div class="card mt-4" style="width: 58rem"><div class="card-header">Routine Administration</div>
+                        <div class="card-body">
+                            <repeat>
+                            <template>
+                            <obsgroup groupingConceptId="160741">
+                            <div class="form-row routine-admin" id="{id}-toggleContainer">
+
+                                <div class="form-group col-md-2"><label>Drug</label><obs conceptId="315825e8-8ba4-4551-bdd1-aa4e02a36639"
+                                                                                           answerConceptIds="99318,99319,99351"
+                                                                                           answerLabels="Iron,Folic Acid,Septrin"
+                                                                                           style="dropdown" /></div>
+                            <div class="form-group col-md-2"><label>Units Per Dose</label><obs conceptId="160856"/></div>
+                                <div class="form-group col-md-2"><label>Duration</label><obs conceptId="159368"/></div>
+                                <div class="form-group col-md-2 "><label>Dose per Day</label><obs   id="ts"   conceptId="160855"/></div>
+                                <div class="form-group col-md-1 offset-md-1">
+                                    <div style="font-size: 25px;margin-top: 26px;">
+                                        <a href="#" id="{id}-addEntry" class="addEntry add-more-link"><i class="icon-plus-sign"></i></a>  <a href="#" class="removeEntry remove-more-link" id="{id}-removeEntry"> <i class="icon-minus">  </i></a>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            </obsgroup>
+                            </template>
+                                <render id="1"/>
+                                <render id="2"/>
+                                <render id="3"/>
+                                <render id="4"/>
+                                <render id="5"/>
+                            </repeat>
+
+
+
+
+
+
+
+                        </div>
+
+                        </div></div></div>
+
 
                     </div>
                     <div class="tab-pane" id="infant-info" >
